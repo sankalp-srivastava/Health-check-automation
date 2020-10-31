@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
 
-import os
 import shutil
 import psutil
 import socket
-from emails import generate_error_report, send_email
+import smtplib 
+from datetime import datetime
 
 def check_cpu_usage():
     """Verifies that there's enough unused CPU"""
@@ -27,25 +27,51 @@ def check_localhost():
     localhost = socket.gethostbyname('localhost')
     return localhost == '127.0.0.1'
 
-if check_cpu_usage():
-    error_message = "CPU usage is over 80%"
-elif not check_disk_usage('/'):
-    error_message = "Available disk space is less than 20%"
-elif not check_available_memory():
-    error_message = "Available memory is less than 500MB"
-elif not check_localhost():
-    error_message = "localhost cannot be resolved to 127.0.0.1"
-else:
-    pass
 
-# send email if any error reported
 if __name__ == "__main__":
-    try:
-        sender = "automation@example.com"
-        receiver = "{}@example.com".format(os.environ.get('USER'))
-        subject = "Error - {}".format(error_message)
-        body = "Please check your system and resolve the issue as soon as possible"
-        message = generate_error_report(sender, receiver, subject, body)
-        send_email(message)
-    except NameError:
-        pass
+    """"Running System Tests"""
+    error_message = ""
+    status = "Unhealthy"
+    count = 1
+    if check_cpu_usage():
+        error_message += "{}. CPU usage is over 80%\n".format(count)
+        count+=1
+    if not check_disk_usage('/'):
+        error_message += "{}. Available disk space is less than 20%\n".format(count)
+        count+=1
+    if not check_available_memory():
+        error_message += "{}. Available memory is less than 500MB\n".format(count)
+        count+=1
+    if not check_localhost():
+        error_message += "{}. localhost cannot be resolved to 127.0.0.1\n".format(count)
+    if error_message == "":
+        status = "Healthy"
+    """ Sending Email if error is found"""
+    if status == "Unhealthy":
+        """ Gmail Server is used here """
+        s = smtplib.SMTP('smtp.gmail.com', 587)
+        
+        sender_email_id= "Enter your mail id"
+        password = "Enter Your Password"
+        receiver_email_id= "Enter Receivers mail id"
+        """getting time and date at which error was generated"""
+        now = datetime.now()
+        dt= now.strftime("%d-%B-%Y %H:%M%S")
+        d,t=dt.split()
+        try:
+            s.starttls() 
+            s.login(sender_email_id, password)
+            message = """
+From : {}
+To : {}
+Subject : Errors encountered on your device
+Date: {}
+Time: {}
+
+Your Device encountered the following errors.Please look into them as soon as possible
+Errors: 
+{}""".format(sender_email_id,receiver_email_id,d,t,error_message)
+            s.sendmail(sender_email_id,receiver_email_id, message) 
+            s.quit() 
+        except:
+            print("Error was found but mail could not be sent")
