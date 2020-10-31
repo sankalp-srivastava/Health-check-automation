@@ -56,7 +56,7 @@ if __name__ == "__main__":
         receiver_email_id= "Enter Receivers mail id"
         """getting time and date at which error was generated"""
         now = datetime.now()
-        dt= now.strftime("%d-%B-%Y %H:%M%S")
+        dt= now.strftime("%d-%B-%Y %H:%M:%S")
         d,t=dt.split()
         try:
             s.starttls() 
