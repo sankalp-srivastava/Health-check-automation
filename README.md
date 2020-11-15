@@ -27,32 +27,32 @@ class smtplib.SMTP(host='', port=0, local_hostname=None, [timeout, ]source_addre
 An SMTP instance encapsulates an SMTP connection. It has methods that support a full repertoire of SMTP and ESMTP operations. If the optional host and port parameters are given, the SMTP connect() method is called with those parameters during initialization. If specified, local_hostname is used as the FQDN of the local host in the HELO/EHLO command. Otherwise, the local hostname is found using socket.getfqdn(). If the connect() call returns anything other than a success code, an SMTPConnectError is raised. The optional timeout parameter specifies a timeout in seconds for blocking operations like the connection attempt (if not specified, the global default timeout setting will be used). If the timeout expires, socket.timeout is raised. The optional source_address parameter allows binding to some specific source address in a machine with multiple network interfaces, and/or to some specific source TCP port. It takes a 2-tuple (host, port), for the socket to bind to as its source address before connecting. If omitted (or if host or port are '' and/or 0 respectively) the OS default behavior will be used.
  
 
-
+![Figure 4.1](/images/Screenshot%202020-11-15%20195444.jpg)
  
 The basic working of the program is shown in the flowchart (fig. 4.1).
 The format of the error report in shown in figure 4.2
 
- 
+ ![Figure 4.2](/images/Screenshot%202020-11-15%20133335.jpg)
 
 
-The emails sent by the program when the errors were encountered are shown in figure 4.3 and figure 4.4
-
- 
+The emails sent by the program when the errors were encountered are shown in figure 4.3 
 
  
 
+ ![Figure 4.3](/images/Screenshot%202020-11-15%20133124.jpg)
 
-If this scripts finds and error but for some reasons unable to send mail then a message pops up on screen saying “FAILED TO SEND ERROR REPORT”. This is shown in figure 4.5
+
+If this scripts finds and error but for some reasons unable to send mail then a message pops up on screen saying “FAILED TO SEND ERROR REPORT”. This is shown in figure 4.4
 
  
-
+![Figure 4.4](/images/Screenshot%202020-11-15%20135900.jpg)
 
 
 This mail is sent via Gmail servers but all other mail servers can be added.
 
  
+![Figure 4.5](/images/Screenshot%202020-11-15%20133425.jpg)
 
-
-In the figure 4.6, the sender_email_id and password should be entered. Sender’s account means the mail id through which the report is to be sent.
+In the figure 4.5, the sender_email_id and password should be entered. Sender’s account means the mail id through which the report is to be sent.
 Receiver_email_id should have the mail id of person to whom the report generated is to be sent.
 
