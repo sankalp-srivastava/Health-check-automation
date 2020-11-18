@@ -1,1 +1,4 @@
-[18-November-2020 09:16:34] [SUCCESS] SYSTEM WAS HEALTHY 
+[18-November-2020 09:27:41] [SUCCESS] SYSTEM WAS HEALTHY 
+[18-November-2020 09:27:43] [SUCCESS] SYSTEM WAS HEALTHY 
+[18-November-2020 09:27:55] [ERROR] (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials r134sm23937329pfc.145 - gsmtp')
+[18-November-2020 09:28:04] [SUCCESS] SYSTEM WAS HEALTHY 
