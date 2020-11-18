@@ -1,4 +1,4 @@
-# Health-checks
+# SYSTEM HEALTH CHECK AUTOMATION
 This python script is supposed to check for basic system errors like if the disk is nearly full or if the C.P.U usage is too high etc.
 This was accomplished using given python modules and functions
 
