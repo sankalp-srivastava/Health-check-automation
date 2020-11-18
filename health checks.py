@@ -72,18 +72,18 @@ Errors:
 {}""".format(sender_email_id,receiver_email_id,d,t,error_message)
             s.sendmail(sender_email_id,receiver_email_id, message) 
             s.quit()
-            with open ("eventlog.txt","w+") as f:
-                message = "[{}] [SUCCESS] SYSTEM WAS UNHEALTHY WITH {}".format(dt,error_message)
+            with open ("eventlog.txt","a") as f:
+                message = "[{}] [SUCCESS] SYSTEM WAS UNHEALTHY WITH {}\n".format(dt,error_message)
                 f.write(message)
         except Exception as e:
             print("FAILED TO SEND ERROR REPORT")
-            with open ("eventlog.txt","w+") as f:
-                message = "[{}] [ERROR] {}".format(dt,e)
+            with open ("eventlog.txt","a") as f:
+                message = "[{}] [ERROR] {}\n".format(dt,e)
                 f.write(message)
     else:
         now = datetime.now()
         dt= now.strftime("%d-%B-%Y %H:%M:%S")
-        with open ("eventlog.txt","w+") as f:
-                message = "[{}] [SUCCESS] SYSTEM WAS HEALTHY ".format(dt)
+        with open ("eventlog.txt","a") as f:
+                message = "[{}] [SUCCESS] SYSTEM WAS HEALTHY \n".format(dt)
                 f.write(message)
             
